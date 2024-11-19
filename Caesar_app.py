@@ -186,10 +186,14 @@ class CaesarCipherGUI(QWidget):
         self.text_entry.setFixedWidth(self.text_entry.fontMetrics().width(self.text_entry.text()) + 20)
 
     def process_text(self):
-        text = self.text_entry.text()
-        direction = 1 if self.forward_radio.isChecked() else -1
-        shift = self.get_shift() if (self.encrypt_radio.isChecked() or self.decrypt_radio.isChecked()) else None
+        if not self.forward_radio.isChecked() and not self.reverse_radio.isChecked():
+            QMessageBox.warning(self, "Input Error", "Please select a shift direction (Forward or Reverse).")
+            return
 
+        text = self.text_entry.text()
+        direction = 1 if self.forward_radio.isChecked() else -1  # Set direction based on selected option
+        shift = self.get_shift() if (self.encrypt_radio.isChecked() or self.decrypt_radio.isChecked()) else None
+        
         if self.encrypt_radio.isChecked():
             if shift is None:
                 return
@@ -197,7 +201,7 @@ class CaesarCipherGUI(QWidget):
             cipher = CaesarCipher(shift)
             encrypted_text = cipher.encrypt(text)
             self.result_area.setHtml(f"<b>Encrypted text:</b> <span style='color: blue;'>{encrypted_text}</span>")
-
+            
         elif self.decrypt_radio.isChecked():
             if shift is None:
                 return
@@ -208,8 +212,9 @@ class CaesarCipherGUI(QWidget):
 
         elif self.brute_force_radio.isChecked():
             results = []
+        # Brute force decryption with the selected direction
             for shift in range(26):
-                cipher = CaesarCipher(shift)
+                cipher = CaesarCipher(shift * direction)  # Apply the selected direction to brute force
                 decrypted_text = cipher.decrypt(text)
                 results.append(f"<b>Shift {shift}:</b> <span style='color: red;'>{decrypted_text}</span>")
             self.result_area.setHtml("<br>".join(results))
