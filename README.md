@@ -25,6 +25,21 @@ _(Add screenshots here to showcase the application's interface and features.)_
 - PyQt5
 - qtwidgets
 
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Piyush-1723/caesar-cipher-python-basic-GUI.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd caesar-cipher-python-basic-GUI
+   ```
+3. Install the required dependencies:
+   ```bash
+   pip install PyQt5 qtwidgets
+   ```
+
 ## Usage
 
 1. Run the application:
