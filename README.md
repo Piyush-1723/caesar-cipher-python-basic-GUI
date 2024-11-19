@@ -16,9 +16,6 @@ A modern, user-friendly graphical user interface (GUI) application for encryptin
   - Scrollbar styled for a sleek, modern look.
 - **Error Handling**: Provides warnings for invalid shift key input.
 
-## Screenshots
-_(Add screenshots here to showcase the application's interface and features.)_
-
 ## Requirements
 
 - Python 3.7 or later
